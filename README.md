@@ -1,5 +1,5 @@
 # Giphy Search
-## By Epicodus
+## By A Developer
 
 ### Description
 #### Use our Giphy search to find gifs of your favorite animals! Application utilizes the Giphy API.
