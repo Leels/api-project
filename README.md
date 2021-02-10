@@ -1,8 +1,8 @@
-# Weather Forecaster
+# Giphy Search
 ## By Epicodus
 
 ### Description
-#### Weather forecast application using the OpenWeather API. Enter a location to view the weather there!
+#### Use our Giphy search to find gifs of your favorite animals! Application utilizes the Giphy API.
 
 ### Known Bugs
 #### None

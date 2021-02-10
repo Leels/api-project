@@ -2,17 +2,12 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import WeatherService from './services/weather-service.js';
 import GiphyService from './services/giphy-service';
 
 function clearFields() {
-  $('#location').val("");
+  $('#term').val("");
   $('.show-errors').text("");
   $('.show-gif').text("");
-}
-
-function displayWeatherDescription(description) {
-  $('.weather-description').text(`The weather is ${description}!`);
 }
 
 function displayGif(response) {
@@ -24,26 +19,18 @@ function displayErrors(error) {
   $('.show-errors').text(`${error}`);
 }
 
-$(document).ready(function() {
-  $('#weatherLocation').click(function() {
-    let city = $('#location').val();
+$(document).ready(function () {
+  $('#gifSearch').click(function () {
+    let searchTerm = $('#term').val();
     clearFields();
-    WeatherService.getWeather(city)
-      .then(function(weatherResponse) {
-        if (weatherResponse instanceof Error) {
-          throw Error(`OpenWeather API error: ${weatherResponse.message}`);
-        }
-        const weatherDescription = weatherResponse.weather[0].description;
-        displayWeatherDescription(weatherDescription);
-        return GiphyService.getGif(weatherDescription);
-      })
-      .then(function(giphyResponse) {
+    GiphyService.getGif(searchTerm)
+      .then(function (giphyResponse) {
         if (giphyResponse instanceof Error) {
           throw Error(`Giphy API error: ${giphyResponse.message}`);
         }
         displayGif(giphyResponse);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         displayErrors(error.message)
       })
   });
